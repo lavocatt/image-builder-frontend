@@ -1151,9 +1151,10 @@ func (h *Handlers) GetComposeClones(ctx echo.Context, composeId uuid.UUID, param
 				http.StatusInternalServerError, "Something went wrong querying clones for this compose")
 		}
 		data = append(data, ClonesResponseItem{
-			Id:        c.Id,
-			Request:   cr,
-			CreatedAt: c.CreatedAt.Format(time.RFC3339),
+			Id:              c.Id,
+			ParentComposeId: composeId,
+			Request:         cr,
+			CreatedAt:       c.CreatedAt.Format(time.RFC3339),
 		})
 	}
 
